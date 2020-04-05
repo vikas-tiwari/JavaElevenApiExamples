@@ -1,5 +1,6 @@
 package Lambda;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
@@ -13,6 +14,13 @@ public class MethodReferencesDemo {
         Comparator<Integer> comp = Integer::compare;
 
         List<String> list = Arrays.asList("India","USA", "Canada");
-        list.forEach(System.out::println);
+        List<String> result = new ArrayList<>();
+
+        Consumer<String> c1 = System.out::println;
+        Consumer<String> c2 = result:: add;
+        list.forEach(c1.andThen(c2));
+        System.out.println("Size of result list "+ result.size());
+
+
     }
 }
